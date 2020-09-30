@@ -40,7 +40,7 @@ After you finished that branchy path you'll hopefully see New Games/New Updates/
 * `--exclude` flag allows to filter files out (i.e. exclude certain languages. Or blacklist certain games). Multiple `--exclude` filters can be added to the same invocation. Search `#google-drive-question` channel for `rclone --exclude` to get some examples from other users.
 * `--delete-excluded` goes with `sync` and `--exclude`. It makes rclone delete files filtered out by `--exclude` from the target drive. I.e. it's useful if you decide to add a filter after you already have some files copied.
 * `rclone size` is the command to check the size of something (duh). Can be used together with `--exclude` filters and source folders you intend to use to get an idea of how much space the final copy would take.
-* `rclone ls/lsf/lsjson` provide a list of files in case you need it
+* `rclone ls/lsf/lsjson` provide a list of files in case you need it.
 
 ## General sidenotes:
 
