@@ -6,14 +6,36 @@ If you want to have access to the game collection in your Tinfoil you'll need to
 1. Get a google drive of big enough size (you can ask in `#google-drive-questions` for advice on that, or maybe someone will pin some info)
 
 1. Clone a shared stash to your own drive (make sure to use **one** google account to configure access to both the shared stash and your own copy in the making. Also, cloning would be limited to 750 GB per day, so yo'll need multiple (many, even) days to complete that). Possible tools:
-   1. rclone (there is a guide available in `!cmd` chat command). You can invoke `rclone config create <remote_name> drive team_drive <drive_id> scope "drive"` (substituting `<remote_name>` and `<drive_id>` with correct values, of course) and select google account when browser pops up, if you want to reduce the number of steps in configuring it. `drive_id` being the part of URL after `https://drive.google.com/drive/folders/` when you open your shared drive.
+   1. rclone (there is a guide available in `!cmd` chat command). You can invoke `rclone config create <remote_name> drive team_drive <drive_id> scope "drive"` (substituting `<remote_name>` and `<drive_id>` with correct values, of course) and select google account when browser pops up, if you want to reduce the number of steps in configuring it. `drive_id` being the part of URL after `https://drive.google.com/drive/folders/` when you open your shared drive. Don't forget the `--drive-server-side-across-configs` flag.
    1. AirExplorer (there is a guide available in `!cmd` chat command).
    1. Any other mean of server-side copy you can thing of and i don't know.
 
-1. Index your copy of the stash, using the tools available via `!tinfoil` chat command. Here the path splits again:
-   1. If you have active SXOS license - you can configure Tinfoil to authenticate against Google Drive by itself by:
-      1. copying `credentials.json` and `gdrive.token` from index generator folder into `<SDROOT>/switch/tinfoil` folder. It will give Tinfoil credentials to authenticate.
-      1. adding a souce in Tinfoil's File Browser with protocol gdrive: and empty path. It will make Tinfoil use said credentials at startup.
+1. Index your copy of the stash, using the tools available via `!tinfoil` chat command. At the time of writing there are two indexers available: `BigBrainAFK/tinfoil_gdrive_generator` (runs on Node.js) and `eXhumer/TinGen` (runs on Python 3.6+). You can follow the README of both indexers to make them work. The one advice i want to provide is to encrypt the index file (`tinfoil_gdrive_generator` would do it by default, `TinGen` needs you to add `--encrypt` flag to its invocation). Be aware that index needs to be regenerated every time files on the drive change. If you have automated the cloning - i recommend to automate index generation to run after that (i.e. on the next line of the batch file). Here the path splits again:
+   1. If you have active SXOS license - you can configure Tinfoil to authenticate against Google Drive by itself. To do that:
+      1. copy `credentials.json` and `gdrive.token` from index generator folder into `<SDROOT>/switch/tinfoil` folder. It will give Tinfoil credentials to authenticate.
+      1. add a souce in Tinfoil's File Browser with protocol gdrive: and empty path. It will make Tinfoil use said credentials at startup.
    1. If you don't have active SXOS license - you can instruct the index generator to publish the files to "Everyone with a link". It gives arguably less secure setup, but removes the need to have all the auth shenanigans. 
       * To do that with `BigBrainAFK/tinfoil_gdrive_generator` add `-auth` flag to the invocation. 
       * To do that with `eXhumer/TinGen` add `--share-files` flag to the invocation.
+
+1. After the contents of drive are indexed you have multiple possible ways of using the index you got:
+   1. Rename index to have `.tfl` extension and put it onto your SD into the folder that's indexed by Tinfoil. By default - root of SD and `<SDROOT>/switch/tinfoil` folders work. If you want to add some other directory (not that there is a big need for that) - make a new source in the File Browser tab of Tinfoil with protocol `sdmc:` and Path being the name of the folder (i.e. `/secretstuff/indexhere/`). Easiest way to setup once, but updating the index file on your SD can become tedious.
+   1. Publish the index on HTTP (or HTTPS) server that can be reached by Tinfoil. And add a new source in the File Browser tab with protocol `http:` (or `https:`), address, port, path pointing to the index. Username/password pair can be used if your HTTP(HTTPS) server is configured to provide basic authentication. Arguably, the most hard/involved way, but if you already have, say, VPS or something - you can run HTTP server and rclone on it and this whole setup can be made to work automatically.
+   1. Publish the index on the gdrive itself. Only works with `TinGen` at the time of writing. A bit hacky way. Isn't supported by `tinfoil_gdrive_generator`. But it is automatable and it doesn't require you to have your own HTTP host. To do this:
+      1. add `--upload-to-my-drive` and `--share-uploaded-index` flags to TinGen invocation. It will result in index being uploaded to drive and shared to "Everyone with link".
+      1. find the uploaded index on your drive, open it, make a shortened url for it (with tiny.cc or something).
+      1. make a new source in the File Browser tab of Tinfoil with protocol `https:` and address/path being the shortened url you got.
+
+
+After you finished that branchy path you'll hopefully see New Games/New Updates/New DLC tabs populated in your Tinfoil and downloads working.
+
+**rclone** sidenotes:
+* `rclone sync` vs `rclone copy`. The difference is: `copy` would check each file present on source remote and make copy of it on target remote (skipping the ones that are already present). `sync` would make the target remote look exactly like the source one. Including renaming/deleting files. Given that indexers don't sort/filter, say, updates - `sync` is more convenient for the "my-own-shop" usage. On the other hand, if you want to store the older files (say, updates. Again.) - `copy` would be the way to go.
+* `--drive-stop-on-upload-limit` flag may be added to rclone invocation to make it exit when reaching 750 GB daily limit. Without this flag rclone will stay active until (i assume, never tested that) the quota gets lifted. Or you close the software with Ctrl-C or something.
+* `-P` flag may be added to rclone invocation to make it show the progress of operations. Or not added if you run it automatically/unattended and don't need the output.
+* `--track-renames` flag recommended by the rclone guide only works with `rclone sync` and will actually produce an error while used with `rclone copy`. The error doesn't prevent the rclone from working, but to get rid of it either use `sync` with this flag, or `copy` without it. 
+
+Helpful reads:
+https://blawar.github.io/tinfoil/custom_index/
+https://blawar.github.io/tinfoil/network/
+READMEs of tools you use
