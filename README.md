@@ -3,7 +3,7 @@ Just a place to put all copypasta together. This document is in no way a full gu
 
 If you want to have access to the game collection in your Tinfoil you'll need to follow uncertain number of following steps in some combination.
 
-1. Get a google drive of big enough size (you can ask in `#google-drive-questions` for advice on that, or maybe someone will pin some info)
+1. Get a google drive of big enough size ("big enough size" means "5TB if you heavily filter the copy, 10+ if you don't"). You can ask in `#google-drive-questions` for advice on getting one, or maybe someone will pin some info.
 
 1. Clone a shared stash to your own drive (make sure to use **one** google account to configure access to both the shared stash and your own copy in the making. Also, cloning would be limited to 750 GB per day, so yo'll need multiple (many, even) days to complete that). Possible tools:
    1. rclone (there is a guide available in `!cmd` chat command). You can invoke `rclone config create <remote_name> drive team_drive <drive_id> scope "drive"` (substituting `<remote_name>` and `<drive_id>` with correct values, of course) and select google account when browser pops up, if you want to reduce the number of steps in configuring it. `drive_id` being the part of URL after `https://drive.google.com/drive/folders/` when you open your shared drive. Don't forget the `--drive-server-side-across-configs` flag.
