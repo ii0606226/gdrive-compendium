@@ -23,19 +23,29 @@ If you want to have access to the game collection in your Tinfoil you'll need to
    1. Publish the index on HTTP (or HTTPS) server that can be reached by Tinfoil. And add a new source in the File Browser tab with protocol `http:` (or `https:`), address, port, path pointing to the index. Username/password pair can be used if your HTTP(HTTPS) server is configured to provide basic authentication. Arguably, the most hard/involved way, but if you already have, say, VPS or something - you can run HTTP server and rclone on it and this whole setup can be made to work automatically.
    1. Publish the index on the gdrive itself. Only works with `TinGen` at the time of writing. A bit hacky way. Isn't supported by `tinfoil_gdrive_generator`. But it is automatable and it doesn't require you to have your own HTTP host. To do this:
       1. add `--upload-to-my-drive` and `--share-uploaded-index` flags to TinGen invocation. It will result in index being uploaded to drive and shared to "Everyone with link".
-      1. find the uploaded index on your drive, open it, make a shortened url for it (with tiny.cc or something).
+      1. find the uploaded index on your drive, open it, make a shortened url for it (with tiny.cc or something). Sadly, Tinfoil doesn't support indexes hosted at google drive directly.
       1. make a new source in the File Browser tab of Tinfoil with protocol `https:` and address/path being the shortened url you got.
 
 
 After you finished that branchy path you'll hopefully see New Games/New Updates/New DLC tabs populated in your Tinfoil and downloads working.
 
-**rclone** sidenotes:
+## **rclone** sidenotes:
 * `rclone sync` vs `rclone copy`. The difference is: `copy` would check each file present on source remote and make copy of it on target remote (skipping the ones that are already present). `sync` would make the target remote look exactly like the source one. Including renaming/deleting files. Given that indexers don't sort/filter, say, updates - `sync` is more convenient for the "my-own-shop" usage. On the other hand, if you want to store the older files (say, updates. Again.) - `copy` would be the way to go.
 * `--drive-stop-on-upload-limit` flag may be added to rclone invocation to make it exit when reaching 750 GB daily limit. Without this flag rclone will stay active until (i assume, never tested that) the quota gets lifted. Or you close the software with Ctrl-C or something.
 * `-P` flag may be added to rclone invocation to make it show the progress of operations. Or not added if you run it automatically/unattended and don't need the output.
 * `--track-renames` flag recommended by the rclone guide only works with `rclone sync` and will actually produce an error while used with `rclone copy`. The error doesn't prevent the rclone from working, but to get rid of it either use `sync` with this flag, or `copy` without it. 
 
-Helpful reads:
+## General sidenotes:
+
+Index can be made to include non-switch files. That would be useful to provide, say, game saves. Or ROMs for emulation. Or whatever another use you can find. Can't say more, never tried that myself.
+
+If you have some files on your local PC/home server and want to setup network install - Tinfoil is smart enough to get the file links from most indexes automatically created by various HTTP servers (i.e. `python -m http.server`). This way is likely to not work with full (and even just full-ish) collection as the big number of files may cause Tinfoil to not work properly.
+
+
+## Helpful reads:
+
 https://blawar.github.io/tinfoil/custom_index/
+
 https://blawar.github.io/tinfoil/network/
+
 READMEs of tools you use
