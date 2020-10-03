@@ -16,7 +16,7 @@ Be aware that index needs to be regenerated **every time files on the drive chan
 Here the path splits again:
    1. If you have active SXOS license - you can configure Tinfoil to authenticate against Google Drive by itself. To do that:
       1. copy `credentials.json` and `gdrive.token` from index generator folder into `<SDROOT>/switch/tinfoil` folder. It will give Tinfoil credentials to authenticate.
-      1. add a souce in Tinfoil's File Browser with protocol gdrive: and empty path. It will make Tinfoil use said credentials at startup.
+      1. add a souce in Tinfoil's File Browser with protocol `gdrive:` and empty path. It will make Tinfoil use said credentials at startup.
    1. If you don't have active SXOS license - you can instruct the index generator to publish the files to "Everyone with a link". It gives arguably less secure setup, but removes the need to have all the auth shenanigans. 
       * To do that with `BigBrainAFK/tinfoil_gdrive_generator` add `-auth` flag to the invocation. 
       * To do that with `eXhumer/TinGen` add `--share-files` flag to the invocation.
