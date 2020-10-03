@@ -25,8 +25,8 @@ Here the path splits again:
    1. Rename index to have `.tfl` extension and put it onto your SD into the folder that's indexed by Tinfoil. By default - root of SD and `<SDROOT>/switch/tinfoil` folders work. Easiest way to setup once, but updating the index file on your SD can become tedious.
    1. Publish the index on HTTP (or HTTPS) server that can be reached by Tinfoil. And add a new source in the File Browser tab with protocol `http:` (or `https:`), address, port, path pointing to the index. Username/password pair can be used if your HTTP(HTTPS) server is configured to provide basic authentication. Arguably, the most hard/involved way, but if you already have, say, VPS or something - you can run HTTP server and rclone on it and this whole setup can be made to work automatically.
    1. Publish the index on the gdrive itself. Only works with `TinGen` at the time of writing. A bit hacky way of doing things. Isn't supported by `tinfoil_gdrive_generator`. But it is automatable and it doesn't require you to have your own HTTP host. To do this:
-      1. add `--upload-to-my-drive` and `--share-uploaded-index` flags to TinGen invocation. It will result in index being uploaded to drive and shared to "Everyone with link".
-      1. find the uploaded index on your drive, open it, make a shortened url for it (with tiny.cc or something). Sadly, Tinfoil doesn't support indexes hosted at google drive directly.
+      1. add `--upload-to-my-drive` and `--share-uploaded-index` flags to TinGen invocation. It will result in index being uploaded to drive and shared to "Everyone with link". It will also give you the index link in form of `https://drive.google.com/uc?id=IdGoEsHeRe`
+      1. make a shortened url for the gdrive link you were given (with tiny.cc or something). Sadly, Tinfoil doesn't support indexes hosted at google drive directly. Also, it wouldn't hurt to check if index file is succesfully shared on your drive.
       1. make a new source in the File Browser tab of Tinfoil with protocol `https:` and address/path being the shortened url you got.
 
 
