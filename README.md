@@ -24,7 +24,7 @@ Here the path splits again:
 1. After the contents of drive are indexed you have multiple possible ways of using the index you got:
    1. Rename index to have `.tfl` extension and put it onto your SD into the folder that's indexed by Tinfoil. By default - root of SD and `<SDROOT>/switch/tinfoil` folders work. Easiest way to setup once, but updating the index file on your SD can become tedious.
    1. Publish the index on HTTP (or HTTPS) server that can be reached by Tinfoil. And add a new source in the File Browser tab with protocol `http:` (or `https:`), address, port, path pointing to the index. Username/password pair can be used if your HTTP(HTTPS) server is configured to provide basic authentication. Arguably, the most hard/involved way, but if you already have, say, VPS or something - you can run HTTP server and rclone on it and this whole setup can be made to work automatically.
-   1. Publish the index on the gdrive itself. Only works with `TinGen` at the time of writing. A bit hacky way of doing things. Isn't supported by `tinfoil_gdrive_generator`. But it is automatable and it doesn't require you to have your own HTTP host. To do this:
+   1. Publish the index on the gdrive itself. A bit hacky way of doing things. Isn't supported by `tinfoil_gdrive_generator`. But it is automatable and it doesn't require you to have your own HTTP host. To do this:
       1. add `--upload-to-my-drive` and `--share-uploaded-index` flags to TinGen invocation. It will result in index being uploaded to drive and shared to "Everyone with link". It will also give you the index link in form of `https://drive.google.com/uc?id=IdGoEsHeRe`
       1. make a shortened url for the gdrive link you were given (with tiny.cc or something). Sadly, Tinfoil doesn't support indexes hosted at google drive directly. Also, it wouldn't hurt to check if index file is succesfully shared on your drive.
       1. make a new source in the File Browser tab of Tinfoil with protocol `https:` and address/path being the shortened url you got.
@@ -39,6 +39,7 @@ After you finished that branchy path you'll hopefully see New Games/New Updates/
 * `-P` flag may be added to rclone invocation to make it show the progress of operations. Or not added if you run it automatically/unattended and don't need the output.
 * `--exclude` flag allows to filter files out (i.e. exclude certain languages. Or blacklist certain games). Multiple `--exclude` filters can be added to the same invocation. Search `#google-drive-question` channel for `rclone --exclude` to get some examples from other users.
 * `--delete-excluded` goes with `sync` and `--exclude`. It makes rclone delete files filtered out by `--exclude` from the target drive. I.e. it's useful if you decide to add a filter after you already have some files copied.
+* Example filters: `--exclude "*\[{JP,KR,GB,HK,RU,PL,AU,FR}\]*"`; `--include "*\W{US,USA,GB,EU,World,En,Europe}\W*".
 * `rclone size` is the command to check the size of something (duh). Can be used together with `--exclude` filters and source folders you intend to use to get an idea of how much space the final copy would take.
 * `rclone ls/lsf/lsjson` provide a list of files in case you need it.
 
