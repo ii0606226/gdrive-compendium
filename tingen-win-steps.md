@@ -48,7 +48,7 @@ To do this:
 * If you have git installed - you can run `git clone https://github.com/eXhumer/TinGen` in the command prompt to download the latest version instead of Steps 1 and 2.
 
 # Further improvements 
-* Create a .bat file (say, `run.bat`), place TinGen invocation there (i.e. `venv\scripts\python.exe TinGen.py <FolderID> --encrypt`), run it with double-click. Removes the need to print those scary commands by hand. Makes runs repeatable (and automatable). You can even make a single .bat to run, say, `rclone` and then `TinGen`.
+* Create a .bat file (say, `run.bat`), place TinGen invocation there (i.e. `venv\scripts\python.exe TinGen.py <FolderID> --encrypt`), run it with double-click. Removes the need to print those scary commands by hand. Makes runs repeatable (and automatable). You can even make a single .bat to run, say, `rclone` and then `TinGen`. Keywords to google for additional info: `windows bat script`
 * Create a scheduled task to run it regularly: 
   * Open the "Run" menu (press Win+R), enter `taskschd.msc`, press OK or Enter. 
   * In the opened window click "Create Basic Task".
@@ -57,7 +57,7 @@ To do this:
   * Select "Start a program", press "Next".
   * Select the .bat file you use to run TinGen, press "Next".
   * Press "Finish".
-* To manage scheduled task you already have created - open Task Scheduler, select "Task Scheduler Library" in the left menu. After that you will see the task with the name you specified in the central menu. You can change Triggers (i.e. set to start at different tim) etc. here.
+* To manage scheduled task you already have created - open Task Scheduler, select "Task Scheduler Library" in the left menu. After that you will see the task with the name you specified in the central menu. You can change Triggers (i.e. set to start at different tim) etc. here. Keywords to google for additional info: `windows scheduled tasks`.
 
 # If you are asked to install C++ Build Tools
 If you get red text that contains `distutils.errors.DistutilsPlatformError: Microsoft Visual C++ 14.0 is required. Get it with "Build Tools for Visual Studio": https://visualstudio.microsoft.com/downloads/`:
