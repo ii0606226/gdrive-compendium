@@ -25,25 +25,27 @@ to reduce the installation impact on the OS. No adding the installation to PATH,
 * Add python to PATH. Would decrease the amount of typing you would need to do in one of the following steps. Can be useful if you intend to run other python scripts on your PC.
 
 # TinGen installation.
+At the time of writing mainline TinGen from @eXhumer does have the bug that makes it to create empty index files. Until the fix is introduced - there is a fork with (temporary) fix provided at `github.com/ii0606226/TinGen` you can use instead. Main location to check/download should still be `github.com/eXhumer/TinGen`
 ## What i recommend:
-1. Go to `github.com/eXhumer/TinGen`, click on the `Code` button and then on the `Download ZIP` link to get the TinGen itself.
+1. Go to TinGen page (link provided above), click on the `Code` button and then on the `Download ZIP` link to get the TinGen itself.
 2. Unpack the `TinGen-main` folder from the ZIP you got to some location on your PC (Desktop is fine. Root of any drive is fine. Any other place is fine).
 3. Open the `TinGen-main` folder you just unzipped, Shift+Right Click on the empty space inside, select "Open Command Prompt here" or "Open PowerShell window here".
 4. In the command prompt you've got enter `<full path to python.exe> -m venv venv`(if you've followed the `Python installation` part above - `c:\python390\python.exe -m venv venv`. If you've added python installation to PATH in the installer - just `python` should suffice), press Enter, wait for it to complete.
 5. Type `venv\scripts\python.exe -m pip install -r requirements.txt` (If you get red text that contains `distutils.errors.DistutilsPlatformError: Microsoft Visual C++ 14.0 is required. Get it with "Build Tools for Visual Studio"` - you probably used python 3.9 and probably should switch to 3.8 to avoid the need to download and install multiple-gigabytes-big stuff. See the possible solutions below.).
 6. Go to https://developers.google.com/drive/api/v3/quickstart/python (link is available in TinGen's README.md), make sure you have the correct account selected in the top right, press "Enable Drive API" - "Next" - "Create" (no need to change anything on this screen, "Desktop app" that's selected by default works) - "Download client configuration" (and save the `credentials.json` it will give you) - "Done"
 7. Move the `credentials.json` you've just downloaded to the `TinGen-main` folder.
-8. Run `venv\scripts\python.exe TinGen.py`. In the browser window that opens select the Google account that has the access to the drive you want to index and grant it the access by clicking "Allow" - "Allow". If you get "This app isn't verified" page - click "Advanced" and "Go to <whatever> (unsafe)". This will create the `gdrive.token` file to store the auth information so you wouldn't need to authorize in the future.
+8. Run `venv\scripts\python.exe TinGen.py`. In the browser window that opens select the Google account that has the access to the drive you want to index and grant it the access by clicking "Allow" - "Allow". If you get "This app isn't verified" page - click "Advanced" and "Go to <whatever> (unsafe)". This will create the `gdrive.token` file to store the auth information so you wouldn't need to authorize in the future. **Don't forget to delete `gdrive.token` file if you change the account.**
 9. When you need to run TinGen - run `venv\scripts\python.exe TinGen.py <tingen options>`
 
 ## The reasoning behind the choices:
 running virtual environment (https://docs.python.org/3/tutorial/venv.html for more info) to prevent installing packages system-wide, so they don't clutter the user profile. And so the packages that are installed already don't interfere with TinGen working.
 
 ## Possible alternative:
-Not running virtual evironment. TinGen requirements would be installed system-wide. They would be stored in the user profile. There is a possibility of conflict with already-installed (or installed in the future) pip packages.
+* Not running virtual evironment. TinGen requirements would be installed system-wide. They would be stored in the user profile. There is a possibility of conflict with already-installed (or installed in the future) pip packages.  
 To do this:
-* Skip Step 4 above (don't run `<full path to python.exe> -m venv venv`)
-* In all the following steps change `venv\scripts\python.exe` to `<full path to python.exe>` (or just `python.exe` if it is added to PATH)
+  * Skip Step 4 above (don't run `<full path to python.exe> -m venv venv`)
+  * In all the following steps change `venv\scripts\python.exe` to `<full path to python.exe>` (or just `python.exe` if it is added to PATH)
+* If you have git installed - you can run `git clone https://github.com/eXhumer/TinGen` in the command prompt to download the latest version instead of Steps 1 and 2.
 
 # Further improvements 
 * Create a .bat file (say, `run.bat`), place TinGen invocation there (i.e. `venv\scripts\python.exe TinGen.py <FolderID> --encrypt`), run it with double-click. Removes the need to print those scary commands by hand. Makes runs repeatable (and automatable). You can even make a single .bat to run, say, `rclone` and then `TinGen`.
