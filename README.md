@@ -24,9 +24,9 @@ Here the path splits again:
 1. After the contents of drive are indexed you have multiple possible ways of using the index you got:
    1. Rename index to have `.tfl` extension and put it onto your SD into the folder that's indexed by Tinfoil. By default - root of SD and `<SDROOT>/switch/tinfoil` folders work. Easiest way to setup once, but updating the index file on your SD can become tedious.
    1. Publish the index on HTTP (or HTTPS) server that can be reached by Tinfoil. And add a new source in the File Browser tab with protocol `http:` (or `https:`), address, port, path pointing to the index. Username/password pair can be used if your HTTP(HTTPS) server is configured to provide basic authentication. Arguably, the most hard/involved way, but if you already have, say, VPS or something - you can run HTTP server and rclone on it and this whole setup can be made to work automatically.
-   1. Publish the index on the gdrive itself. A bit hacky way of doing things. Isn't supported by `tinfoil_gdrive_generator`. But it is automatable and it doesn't require you to have your own HTTP host. To do this:
-      1. add `--upload-to-my-drive` and `--share-uploaded-index` flags to TinGen invocation. It will result in index being uploaded to drive and shared to "Everyone with link". It will also give you the index link in form of `https://drive.google.com/uc?id=IdGoEsHeRe`
-      1. make a shortened url for the gdrive link you were given (with tiny.cc or something). Sadly, Tinfoil doesn't support indexes hosted at google drive directly. Also, it wouldn't hurt to check if index file is succesfully shared on your drive.
+   1. Publish the index on the gdrive itself. A bit hacky way of doing things. But it is automatable and it doesn't require you to have your own HTTP host. To do this:
+      1. add `--upload-to-my-drive` and `--share-uploaded-index` flags to TinGen invocation (or `-uploadDrive y` to the invocation of tinfoil_gdrive_generator). It will result in index being uploaded to drive and shared to "Everyone with link". TinGen will also give you the index link in form of `https://drive.google.com/uc?id=IdGoEsHeRe`
+      1. make a shortened url for the gdrive link you were given (in the form of `https://drive.google.com/uc?id=IdGoEsHeRe`) with tiny.cc or something. Reason: sadly, Tinfoil doesn't support indexes hosted at google drive directly. Also, it wouldn't hurt to check if index file is succesfully shared on your drive.
       1. make a new source in the File Browser tab of Tinfoil with protocol `https:` and address/path being the shortened url you got.
 
 
@@ -53,6 +53,7 @@ You can make Tinfoil index some other directory other than root of SD and `<SDRO
 
 Getting a custom client ID for use with Google Drive. I didn't see any profit from it while trying to run it. I haven't seen problems that could be solved by it. Don't ask me what is it for.
 
+[https://github.com/ii0606226/TinGen](https://github.com/ii0606226/TinGen) - at the time of writing mainline TinGen has a bug that leads to creation of empty index files. If you're hit by it - try the fork from this link.
 
 ## Helpful reads:
 
