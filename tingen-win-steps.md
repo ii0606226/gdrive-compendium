@@ -35,7 +35,7 @@ At the time of writing mainline TinGen from @eXhumer does have the bug that make
 6. Go to https://developers.google.com/drive/api/v3/quickstart/python (link is available in TinGen's README.md), make sure you have the correct account selected in the top right, press "Enable Drive API" - "Next" - "Create" (no need to change anything on this screen, "Desktop app" that's selected by default works) - "Download client configuration" (and save the `credentials.json` it will give you) - "Done"
 7. Move the `credentials.json` you've just downloaded to the `TinGen-main` folder.
 8. Run `venv\scripts\python.exe TinGen.py`. In the browser window that opens select the Google account that has the access to the drive you want to index and grant it the access by clicking "Allow" - "Allow". If you get "This app isn't verified" page - click "Advanced" and "Go to <whatever> (unsafe)". This will create the `gdrive.token` file to store the auth information so you wouldn't need to authorize in the future. **Don't forget to delete `gdrive.token` file if you change the account.**
-9. When you need to run TinGen - run `venv\scripts\python.exe TinGen.py <tingen options>`
+9. When you need to run TinGen - run `venv\scripts\python.exe TinGen.py <tingen options> <folder_id>` (`folder_id` being the part of URL after `https://drive.google.com/drive/folders/` when you open your shared folder).
 
 ## The reasoning behind the choices:
 running virtual environment (https://docs.python.org/3/tutorial/venv.html for more info) to prevent installing packages system-wide, so they don't clutter the user profile. And so the packages that are installed already don't interfere with TinGen working.
