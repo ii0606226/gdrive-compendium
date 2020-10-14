@@ -53,6 +53,8 @@ You can make Tinfoil index some other directory other than root of SD and `<SDRO
 
 Getting a custom client ID for use with Google Drive. I didn't see any profit from it while trying to run it. I haven't seen problems that could be solved by it. Don't ask me what is it for.
 
+Sharing the index with another people. It is OK. But if your files are not published - remember that `credentials.json` + `gdrive.token` give full priveleges of account they were created with. So consider creating a throwaway account with read permissions granted on your drive to provide to another users. Or let them make their own credentials/token pairs (may use another tools, like `GDrive Token Generator for SX Installer` or whatever) and give their google accounts the read permissions.
+
 [https://github.com/ii0606226/TinGen](https://github.com/ii0606226/TinGen) - at the time of writing mainline TinGen has a bug that leads to creation of empty index files. If you're hit by it - try the fork from this link.
 
 ## Helpful reads:
