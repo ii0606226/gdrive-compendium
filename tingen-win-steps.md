@@ -1,5 +1,5 @@
 # Step-by-step(-ish) guide to get TinGen running on your Windows PC (laptop, server, microwave, whatever)
-Latest edit at **2020/10/11** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.
+Latest edit at **2020/10/14** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.
 # Python installation on Windows.  
 ## Python version considerations: 
 * Python versions before 3.6 wouldn't work as the language features used in the TinGen code were not introduced yet.
