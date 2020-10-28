@@ -1,23 +1,28 @@
 # gdrive-compendium
+Latest edit at **2020/10/28** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
+
 Just a place to put all copypasta together. This document is in no way a full guide. Not even a comprehensive one. It's just a collection of things that are missing in READMEs or are easily glanced over. It does not replace any READMEs. It does not have replacing any README as a goal. It isn't likely to replace any README in the future.
 
 If you want to have access to the game collection in your Tinfoil you'll need to follow uncertain number of following steps in some combination.
 
 1. Get a google drive of big enough size ("big enough size" means "5TB if you heavily filter the copy, 10+ if you don't"). You can ask in `#google-drive-questions` for advice on getting one, or maybe someone will pin some info.
 
-1. Clone a shared stash to your own drive (make sure to use **one** google account to configure access to both the shared stash and your own copy in the making. Also, cloning would be limited to 750 GB per day, so yo'll need multiple (many, even) days to complete that). Possible tools:
+1. Clone a shared stash to your own drive (make sure to use **one** google account to configure access to both the shared stash and your own copy in the making. Also, cloning would be limited to 750 GB per day, so yo'll need multiple (many, even) days to complete that). And make sure to read what people write about their drives. Some admins even add **"Don't user rclone here"** to the name. Please, respect their work and choose a different drive. Possible tools:
    1. rclone (there is a guide available in `!cmd` chat command). If you manage to get shared drive somewhere - it should be configured as "team drive" as well (first half of the guide). Or you can invoke `rclone config create <remote_name> drive team_drive <drive_id> scope "drive"` (substituting `<remote_name>` and `<drive_id>` with correct values, of course) and select google account when browser pops up, if you want to reduce the number of steps in configuring it. `drive_id` being the part of URL after `https://drive.google.com/drive/folders/` when you open your shared drive. Don't forget the `--drive-server-side-across-configs` flag.
    1. AirExplorer (there is a guide available in `!cmd` chat command).
    1. Any other mean of server-side copy you can think of and i don't know.
 
-1. Index your copy of the stash, using the tools available via `!tinfoil` chat command.   
-At the time of writing there are two indexers available: `BigBrainAFK/tinfoil_gdrive_generator` (runs on Node.js) and `eXhumer/TinGen` (runs on Python 3.6+). You **should** follow the README of the indexer you choose to make it work. The one advice i want to provide is to encrypt the index file (`tinfoil_gdrive_generator` would do it by default, `TinGen` needs you to add `--encrypt` flag to its invocation).   
-Be aware that index needs to be regenerated **every time files on the drive change**. If you have automated the cloning - i recommend to automate index generation to run after that (i.e. on the next line of the batch file).  
+1. Index your copy of the stash, using the tools available via `!tinfoil` chat command. At the time of writing there are two indexers available: 
+   * `BigBrainAFK/tinfoil_gdrive_generator` (runs on Node.js).
+   * `ii0606226/TinGen` (runs on Python 3.6+). Fork of `eXhumer/TinGen` with couple of bugfixes, as maintainer of the main one left. Works for now, but please don't expect it to be maintained in the future.  
+   
+   You **should** follow the README of the indexer you choose to make it work. The one advice i want to provide is to encrypt the index file (`tinfoil_gdrive_generator` would do it by default, `TinGen` needs you to add `--encrypt` flag to its invocation).   
+   Be aware that index needs to be regenerated **every time files on the drive change**. If you have automated the cloning - i recommend to automate index generation to run after that (i.e. on the next line of the batch file).  
 Here the path splits again:
-   1. If you have active SXOS license - you can configure Tinfoil to authenticate against Google Drive by itself. To do that:
+   1. You can configure Tinfoil to authenticate against Google Drive by itself. May require active SXOS license or work without one. Things tend to change nowadays. To do that:
       1. copy `credentials.json` and `gdrive.token` from index generator folder into `<SDROOT>/switch/tinfoil` folder. It will give Tinfoil credentials to authenticate.
       1. add a souce in Tinfoil's File Browser with protocol `gdrive:` and empty path. It will make Tinfoil use said credentials at startup.
-   1. If you don't have active SXOS license - you can instruct the index generator to publish the files to "Everyone with a link". It gives arguably less secure setup, but removes the need to have all the auth shenanigans. 
+   1. You can instruct the index generator to publish the files to "Everyone with a link" in case first option doesn't work. Or you don't want to mess with it. It gives arguably less secure setup, but removes the need to have all the auth shenanigans. 
       * To do that with `BigBrainAFK/tinfoil_gdrive_generator` add `-auth` flag to the invocation. 
       * To do that with `eXhumer/TinGen` add `--share-files` flag to the invocation.
 
@@ -55,7 +60,6 @@ Getting a custom client ID for use with Google Drive. I didn't see any profit fr
 
 Sharing the index with another people. It is OK. But if your files are not published - remember that `credentials.json` + `gdrive.token` give full priveleges of account they were created with. So consider creating a throwaway account with read permissions granted on your drive to provide to another users. Or let them make their own credentials/token pairs (may use another tools, like `GDrive Token Generator for SX Installer` or whatever) and give their google accounts the read permissions.
 
-[https://github.com/ii0606226/TinGen](https://github.com/ii0606226/TinGen) - at the time of writing mainline TinGen has a bug that leads to creation of empty index files. If you're hit by it - try the fork from this link.
 
 ## Helpful reads:
 
