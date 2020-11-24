@@ -70,4 +70,6 @@ Sharing the index with another people. It is OK. But if your files are not publi
 
 READMEs of tools you use
 
-Step-by-steps for [TinGen on Windows](https://ii0606226.github.io/gdrive-compendium/tingen-win-steps) [rustfoil](https://ii0606226.github.io/gdrive-compendium/rustfoil-steps)
+Step-by-steps for:
+* [TinGen on Windows](https://ii0606226.github.io/gdrive-compendium/tingen-win-steps) 
+* [rustfoil](https://ii0606226.github.io/gdrive-compendium/rustfoil-steps)
