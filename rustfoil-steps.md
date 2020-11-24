@@ -62,14 +62,14 @@ flag|meaning
 
 ## Automation  
 Windows:  
-* Create a .bat file (say, `run.bat`), place TinGen invocation there (i.e. `rustfoil.exe --public-key public.key <FolderID>`), run it with double-click. Removes the need to print the commands by hand. Makes runs repeatable (and automatable). You can even make a single .bat to run, say, `rclone` and then `TinGen`. Keywords to google for additional info: `windows bat script`
+* Create a .bat file (say, `run.bat`), place rustfoil invocation there (i.e. `rustfoil.exe --public-key public.key <FolderID>`), run it with double-click. Removes the need to print the commands by hand. Makes runs repeatable (and automatable). You can even make a single .bat to run, say, `rclone` and then `rustfoil`. Keywords to google for additional info: `windows bat script`
 * Create a scheduled task to run it regularly: 
   * Open the "Run" menu (press Win+R), enter `taskschd.msc`, press OK or Enter. 
   * In the opened window click "Create Basic Task".
-  * Input a Name for it (i.e. "TinGen"), press "Next".
+  * Input a Name for it (i.e. "rustfoil"), press "Next".
   * Select Trigger (i.e. "Daily", the default one. Pretty self-explanatory), press "Next". Change the values as you see fit, press "Next" again.
   * Select "Start a program", press "Next".
-  * Select the .bat file you use to run TinGen, press "Next".
+  * Select the .bat file you use to run rustfoil, press "Next".
   * Press "Finish".
 * To manage scheduled task you already have created - open Task Scheduler, select "Task Scheduler Library" in the left menu. After that you will see the task with the name you specified in the central menu. You can change Triggers (i.e. set to start at different time) etc. here. Keywords to google for additional info: `windows scheduled tasks`.  
 
