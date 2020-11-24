@@ -88,9 +88,7 @@ Option b. Convert the file by hand. For that:
 When you have the file - copy `credentials.json` and `gdrive.token` to `/switch/tinfoil` folder on your SD card. And add a souce in Tinfoil’s File Browser with protocol `gdrive:` and empty path. It will make Tinfoil use said credentials at startup (and refresh if needed).
 
 ## Sharing index from gdrive
-* Add ``--upload-my-drive --share-index` flags to rustfoil invocation.  
-* Open [https://drive.google.com/drive/my-drive], right-click on `index.tfl`, click `Get link` and copy the link from pop-up.  
-* Get the file ID from copied link (the part between `https://drive.google.com/file/d/` and `/view?usp=sharing`. I.E. `1abc4eF_GhjKlmKJ0RqUabCde_68ABCDE`).  
-* Add `https://drive.google.com/uc?id=` in front of it (i.e. `https://drive.google.com/uc?id=1abc4eF_GhjKlmKJ0RqUabCde_68ABCDE`).  
+* Add `--upload-my-drive --share-index` flags to rustfoil invocation.  
+* Rustfoil output will have `[Info] Shared Index File, accessible at https://drive.google.com/uc?id=1abc4eF_GhjKlmKJ0RqUabCde_68ABCDE` line in it. Get the link from there.
 * Go to tiny.cc (or another link shortener of your choice) and make a shortened link for that. (Reason: sadly, Tinfoil doesn’t support query parameters in index URLs so you can't add index hosted at google drive directly).  
 * Make a new source in the File Browser tab of Tinfoil with protocol https: and address/path being the shortened url you got.
