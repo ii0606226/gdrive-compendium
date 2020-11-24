@@ -1,5 +1,5 @@
 # gdrive-compendium
-Latest edit at **2020/10/28** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
+Latest edit at **2020/11/24** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
 
 Just a place to put all copypasta together. This document is in no way a full guide. Not even a comprehensive one. It's just a collection of things that are missing in READMEs or are easily glanced over. It does not replace any READMEs. It does not have replacing any README as a goal. It isn't likely to replace any README in the future.
 
@@ -14,6 +14,7 @@ If you want to have access to the game collection in your Tinfoil you'll need to
 
 1. Index your copy of the stash, using the tools available via `!tinfoil` chat command. At the time of writing there are two indexers available: 
    * `BigBrainAFK/tinfoil_gdrive_generator` (runs on Node.js).
+   * `DevYukine/rustfoil` written in Rust. Intended to have no need in external dependencies. Documentation is somewhat barebones. No releases published yet, but you can log in to GitHub, go to "Actions" tab and download the built executables from there. Somewhat step-by-step guide available [here](https://ii0606226.github.io/gdrive-compendium/rustfoil-steps) 
    * `ii0606226/TinGen` (runs on Python 3.6+). Fork of `eXhumer/TinGen` with couple of bugfixes, as maintainer of the main one left. Works for now, but please don't expect it to be maintained in the future.  
    
    You **should** follow the README of the indexer you choose to make it work. The one advice i want to provide is to encrypt the index file (`tinfoil_gdrive_generator` would do it by default, `TinGen` needs you to add `--encrypt` flag to its invocation).   
