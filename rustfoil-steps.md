@@ -1,5 +1,5 @@
 # rustfoil in (almost) step-by-step way
-Latest edit at **2020/11/24** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
+Latest edit at **2020/11/28** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
 Typing conventions:  
 `text` for buttons you need to press, commands you need to enter in command line, etc.  
 \<text\> for the stuff you need to replace by  
@@ -9,7 +9,7 @@ Typing conventions:
 ## Initial setup
 1. Get rustfoil from https://github.com/DevYukine/rustfoil. At the time of writing this there are no releases yet. So you'd need to: 
     * log in to github
-    * go to "Actions" tab (https://github.com/DevYukine/rustfoil/actions)
+    * go to "Actions" tab and under the "Branch" select "master" (https://github.com/DevYukine/rustfoil/actions?query=branch%3Amaster)
     * select the latest one
     * download the matching OS/architecture executable from there
 2. Get `credentials.json` for your Google account following the instructions from https://github.com/DevYukine/rustfoil/blob/master/README.md#requirements:
