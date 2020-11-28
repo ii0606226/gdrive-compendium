@@ -53,6 +53,8 @@ flag|meaning
 `-V`|show rustfoil version. Make sure to update to latest one in case you encounter any problems.
 `--headless`|allow for remote (headless) OAuth
 `--share-files`|share all indexed files to "Anyone with a link"
+`--tinfoil-auth`|create Google auth files for Tinfoil
+``--tinfoil-auth-path``|change path to where `--tinfoil-auth` creates files
 **uploading index to gdrive**| 
 `--upload-my-drive`|upload the generated index to personal gdrive of account you run rustfoil with
 `--upload-to-folder-id <id>`|upload the generated index to the gdrive folder with specified ID
@@ -75,17 +77,11 @@ Windows:
 
 Possible keywords to google for similar effect on linux: `create shell script`, `create cron task`
 
-## Creating `gdrive.token` file to use with Tinfoil 
-Sadly, the OAuth library that is used in rustfoil saves Google Drive access token in different format from what Tinfoil expects. So to get the `gdrive.token` file for Tinfoil you can:  
-Option a. Use any other tool that generates `gdrive.token`. (i.e. `SX Google Drive Token Generator`, `tingen`, `tinfoil_gdrive_generator`)  
-Option b. Convert the file by hand. For that:  
-  * create a copy of `token.json`, name it `gdrive.token` (i.e. run `copy token.json gdrive.token` in command line)
-  * open it with text editor of your choice (i.e. Notepad)
-  * find `{"access_token"` part. Delete **everything** before it (including `"token":`. `{` should be the first symbol in the file).
-  * go to the end of the file and replace all the brackets there with one `}`
-  * save the file  
-
-When you have the file - copy `credentials.json` and `gdrive.token` to `/switch/tinfoil` folder on your SD card. And add a souce in Tinfoil’s File Browser with protocol `gdrive:` and empty path. It will make Tinfoil use said credentials at startup (and refresh if needed).
+## Setting up Google Drive auth in Tinfoil 
+Use rustfoil with `--tinfoil-auth` flag to create the files needed to set up google auth in Tinfoil (i.e. just run `rustfoil --tinfoil-auth` once).
+By default it will create "COPY_TO_SD" folder where you run (can be altered with `--tinfoil-auth-path`). With the proper folder structure.  
+Just copy its contents to the root of your SD (the whole "switch" folder, replacing files if you're asked to). Or go to "COPY_TO_SD\switch\tinfoil\" and just copy `credentials.json` and `gdrive.token` files from there.  
+Then add a souce in Tinfoil’s File Browser with protocol `gdrive:` and empty path. It will make Tinfoil use said credentials at startup (and refresh if needed).
 
 ## Sharing index from gdrive
 * Add `--upload-my-drive --share-index` flags to rustfoil invocation.  
