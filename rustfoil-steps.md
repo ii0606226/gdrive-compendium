@@ -43,6 +43,7 @@ Typing conventions:
 If you've got no error messages and `index.tfl` file is there - you're good to go.
 
 ## Notable command line flags  
+
 flag|meaning  
 ---|---  
 `--help`|list all available flags  
