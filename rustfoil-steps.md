@@ -33,7 +33,7 @@ Typing conventions:
     
     After you complete that, rustfoil should show `[Info] Generated index successfully` and create `token.json` file in the folder you run it from. 
 6. Get the ID(s) of Google Drive folder(s) you want to index (ID being the part of URL after `https://drive.google.com/drive/folders/` when you open said folder).
-7. Index your folder(s) by running `rustfoil <flags> <ID1> [<ID2> <ID3> ...]`. You should get
+7. Index your folder(s) by running `rustfoil <flags> <ID1> [<ID2> <ID3> ...]` (i.e. `rustfoil 0ABcDE1FghIJKLm2PVA`; or `rusftoil 0ABcDE1FghIJKLm2PVA 1GHcDE1FghIJKLm2PVA` for two folders). You should get
 ```
 / Scanned 226 files                                                                                                    5
 [Info] Generated index successfully
@@ -43,20 +43,20 @@ Typing conventions:
 If you've got no error messages and `index.tfl` file is there - you're good to go.
 
 ## Notable command line flags  
-flag|meaning
----|---
-`--help`|list all available flags
-`-V`|show rustfoil version. Make sure to update to latest one in case you encounter any problems.
-`--headless`|allow for remote (headless) OAuth
-`--share-files`|share all indexed files to "Anyone with a link"
-`--tinfoil-auth`|create Google auth files for Tinfoil
-``--tinfoil-auth-path``|change path to where `--tinfoil-auth` creates files
-**uploading index to gdrive**| 
-`--upload-my-drive`|upload the generated index to personal gdrive of account you run rustfoil with
-`--upload-to-folder-id <id>`|upload the generated index to the gdrive folder with specified ID
-`--share-index`|share the uploaded index file to "Anyone with a link"
-**encryption**| 
-`--public-key <keyfile>`|encrypt index with public key. You can get one [here](https://blawar.github.io/tinfoil/files/public.key). Store in folder with rustfoil, add `--public-key public.key` to invocation
+flag|meaning  
+---|---  
+`--help`|list all available flags  
+`-V`|show rustfoil version. Make sure to update to latest one in case you encounter any problems.  
+`--headless`|allow for remote (headless) OAuth  
+`--share-files`|share all indexed files to "Anyone with a link"  
+`--tinfoil-auth`|create Google auth files for Tinfoil  
+``--tinfoil-auth-path``|change path to where `--tinfoil-auth` creates files  
+**uploading index to gdrive**|  
+`--upload-my-drive`|upload the generated index to personal gdrive of account you run rustfoil with  
+`--upload-to-folder-id <id>`|upload the generated index to the gdrive folder with specified ID  
+`--share-index`|share the uploaded index file to "Anyone with a link"  
+**encryption**|  
+`--public-key <keyfile>`|encrypt index with public key. You can get one [here](https://blawar.github.io/tinfoil/files/public.key). Store in folder with rustfoil, add `--public-key public.key` to invocation  
 
 ## Automation  
 Windows:  
