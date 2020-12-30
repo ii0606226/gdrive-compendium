@@ -1,10 +1,8 @@
 # Step-by-step(-ish) guide to get TinGen running on your Windows PC (laptop, server, microwave, whatever)
-Latest edit at **2020/10/14** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.
+Latest edit at **2020/12/30** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.
 # Python installation on Windows.  
 ## Python version considerations: 
 * Python versions before 3.6 wouldn't work as the language features used in the TinGen code were not introduced yet.
-* Python 3.9 does require to recompile one of the dependencies (pyCryptoDome) and that would take getting 4.8+GB C++ Build Tools set to your PC. Bad news. 
-* **Go with versions 3.6-3.8.**  
 
 ## What i recommend:
 1. Go to `www.python.org` and download the distribution of version equal or greater than 3.6, but not higher than 3.8. Get the *executable installer* that matches your OS architecture (or just x86 if in doubt). Link should be named `Windows x86-64 executable installer` or `Windows x86 executable installer`.
@@ -25,7 +23,8 @@ to reduce the installation impact on the OS. No adding the installation to PATH,
 * Add python to PATH. Would decrease the amount of typing you would need to do in one of the following steps. Can be useful if you intend to run other python scripts on your PC.
 
 # TinGen installation.
-At the time of writing mainline TinGen from @eXhumer does have the bug that makes it to create empty index files. Until the fix is introduced - there is a fork with (temporary) fix provided at `github.com/ii0606226/TinGen` you can use instead. Main location to check/download should still be `github.com/eXhumer/TinGen`
+Get the recent TinGen version from https://github.com/eXhumer/TinGen
+
 ## What i recommend:
 1. Go to TinGen page (link provided above), click on the `Code` button and then on the `Download ZIP` link to get the TinGen itself.
 2. Unpack the `TinGen-main` folder from the ZIP you got to some location on your PC (Desktop is fine. Root of any drive is fine. Any other place is fine).
@@ -62,14 +61,14 @@ To do this:
 # If you are asked to install C++ Build Tools
 If you get red text that contains `distutils.errors.DistutilsPlatformError: Microsoft Visual C++ 14.0 is required. Get it with "Build Tools for Visual Studio": https://visualstudio.microsoft.com/downloads/`:
 
-You are probably using python 3.9. I **strongly advise** you to change it to 3.8 to avoid multiple-gigabyte download/install.  
+May be caused by using freshly released Python version that still doesn't have pre-built libraries. Going back a minor version (i.e. from 3.9 to 3.8) should help you to avoid multiple-gigabyte download/install.  
 
 If you want to switch to another python version:
 1. Delete the `venv` folder in the `TinGen-main`
-2. Install Python 3.8 according to the first part
+2. Install selected Python version according to the first part
 3. Proceed with TinGen installation.
 
-If you want to proceed with 3.9:
+If you want to proceed with the recent version:
 1. Go the the `https://visualstudio.microsoft.com/downloads/`, find the `Tools for Visual Studio 2019` part, inside it find `Build Tools for Visual Studio 2019` and download them.
 2. Run the installer. The changes needed are: Select "C++ build tools" in the left menu when it asks you for features. Continue-Next-Install-Finish-whatever
 3. Run the `venv\scripts\python.exe -m pip install -r requirements.txt` command again. Now it should proceed without those errors.
