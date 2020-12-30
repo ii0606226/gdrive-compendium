@@ -5,7 +5,7 @@ Latest edit at **2020/12/30** (yyyy/mm/dd). May be outdated. Don't forget to use
 * Python versions before 3.6 wouldn't work as the language features used in the TinGen code were not introduced yet.
 
 ## What i recommend:
-1. Go to `www.python.org` and download the distribution of version equal or greater than 3.6, but not higher than 3.8. Get the *executable installer* that matches your OS architecture (or just x86 if in doubt). Link should be named `Windows x86-64 executable installer` or `Windows x86 executable installer`.
+1. Go to `www.python.org` and download the distribution of version equal or greater than 3.6. Get the *executable installer* that matches your OS architecture (or just x86 if in doubt). Link should be named `Windows x86-64 executable installer` or `Windows x86 executable installer`.
 2. Run the downloaded file (it should be named `python-3.8.6-amd64.exe` or like that, where `3.8.6` part is the version and `amd64`/`x86` is the architecture).
 3. Untick "Install launcher for all users (recommended)" checkbox. Press "Customize installation".
 4. No need to change anything on the "Optional Features" screen, just press "Next".
