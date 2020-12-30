@@ -1,5 +1,5 @@
 # gdrive-compendium
-Latest edit at **2020/11/24** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
+Latest edit at **2020/12/30** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
 
 Just a place to put all copypasta together. This document is in no way a full guide. Not even a comprehensive one. It's just a collection of things that are missing in READMEs or are easily glanced over. It does not replace any READMEs. It does not have replacing any README as a goal. It isn't likely to replace any README in the future.
 
@@ -14,8 +14,8 @@ If you want to have access to the game collection in your Tinfoil you'll need to
 
 1. Index your copy of the stash, using the tools available via `!tinfoil` chat command. At the time of writing there are two indexers available: 
    * `BigBrainAFK/tinfoil_gdrive_generator` (runs on Node.js).
-   * `DevYukine/rustfoil` written in Rust. Intended to have no need in external dependencies. Documentation is somewhat barebones. No releases published yet, but you can log in to GitHub, go to "Actions" tab and download the built executables from there. Somewhat step-by-step guide available [here](https://ii0606226.github.io/gdrive-compendium/rustfoil-steps) 
-   * `ii0606226/TinGen` (runs on Python 3.6+). Fork of `eXhumer/TinGen` with couple of bugfixes, as maintainer of the main one left. Works for now, but please don't expect it to be maintained in the future.  
+   * `DevYukine/rustfoil` written in Rust. Intended to have no need in external dependencies. Documentation is somewhat barebones. No releases published yet, but you can log in to GitHub, go to "Actions" tab and download the built executables from there. Somewhat step-by-step guide available [here](https://ii0606226.github.io/gdrive-compendium/rustfoil-steps). 
+   * `eXhumer/TinGen` (runs on Python 3.6+).
    
    You **should** follow the README of the indexer you choose to make it work. The one advice i want to provide is to encrypt the index file (`tinfoil_gdrive_generator` would do it by default, `TinGen` needs you to add `--encrypt` flag to its invocation).   
    Be aware that index needs to be regenerated **every time files on the drive change**. If you have automated the cloning - i recommend to automate index generation to run after that (i.e. on the next line of the batch file).  
@@ -26,12 +26,13 @@ Here the path splits again:
    1. You can instruct the index generator to publish the files to "Everyone with a link" in case first option doesn't work. Or you don't want to mess with it. It gives arguably less secure setup, but removes the need to have all the auth shenanigans. 
       * To do that with `BigBrainAFK/tinfoil_gdrive_generator` add `-auth` flag to the invocation. 
       * To do that with `eXhumer/TinGen` add `--share-files` flag to the invocation.
+      * In `DevYukine/rustfoil` you have `--share-files` that shares each file, and `--share-folders` which shares whole folders instead (Pro: way faster, as you need to do 1 share per folder, than thousands of files, Contra: there would exist a gdrive link that would allow non-authorized user to list all of your files in the folder. Similar thing can be achieved for other indexers by manually sharing the folders (setting the access to "Anybody with link")).
 
 1. After the contents of drive are indexed you have multiple possible ways of using the index you got:
    1. Rename index to have `.tfl` extension and put it onto your SD into the folder that's indexed by Tinfoil. By default - root of SD and `<SDROOT>/switch/tinfoil` folders work. Easiest way to setup once, but updating the index file on your SD can become tedious.
    1. Publish the index on HTTP (or HTTPS) server that can be reached by Tinfoil. And add a new source in the File Browser tab with protocol `http:` (or `https:`), address, port, path pointing to the index. Username/password pair can be used if your HTTP(HTTPS) server is configured to provide basic authentication. Arguably, the most hard/involved way, but if you already have, say, VPS or something - you can run HTTP server and rclone on it and this whole setup can be made to work automatically.
    1. Publish the index on the gdrive itself. A bit hacky way of doing things. But it is automatable and it doesn't require you to have your own HTTP host. To do this:
-      1. add `--upload-to-my-drive` and `--share-uploaded-index` flags to TinGen invocation (or `-uploadDrive y` to the invocation of tinfoil_gdrive_generator). It will result in index being uploaded to drive and shared to "Everyone with link". TinGen will also give you the index link in form of `https://drive.google.com/uc?id=IdGoEsHeRe`
+      1. add `--upload-to-my-drive --share-uploaded-index` flags to TinGen  invocation (or `--upload-my-drive --share-index` for rustfoil, or `-uploadDrive y` for tinfoil_gdrive_generator). It will result in index being uploaded to drive and shared to "Everyone with link". TinGen will also give you the index link in form of `https://drive.google.com/uc?id=IdGoEsHeRe`
       1. make a shortened url for the gdrive link you were given (in the form of `https://drive.google.com/uc?id=IdGoEsHeRe`) with tiny.cc or something. Reason: sadly, Tinfoil doesn't support indexes hosted at google drive directly. Also, it wouldn't hurt to check if index file is succesfully shared on your drive.
       1. make a new source in the File Browser tab of Tinfoil with protocol `https:` and address/path being the shortened url you got.
 
