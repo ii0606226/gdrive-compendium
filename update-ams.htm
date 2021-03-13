@@ -9,6 +9,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                   var res = JSON.parse(this.responseText);
                   hash = res["body"].split("`")[1];
+                  document.getElementById('fw').textContent=res["name"].split("/")[1];
                   document.getElementById('patches').href=res["assets"][0]["browser_download_url"];
                   document.getElementById('patches').textContent=res["assets"][0]["browser_download_url"];
                 }
@@ -44,6 +45,7 @@
             </script>
     </head>
     <body onload="loadStuff()">
+        <p>Supported Firmware version: <b id="fw">shit's broken, wait for fix</b></p>
         <p>Download 2 archives, unpack to the root of your SD:</p>
         <a id="ams">shit's broken, wait for fix</a><br>
         <a id="patches">shit's broken, wait for fix</a><br>
