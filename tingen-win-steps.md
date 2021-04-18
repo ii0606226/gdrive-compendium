@@ -1,5 +1,5 @@
 # Step-by-step(-ish) guide to get TinGen running on your Windows PC (laptop, server, microwave, whatever)
-Latest edit at **2020/12/30** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.
+Latest edit at **2021/04/18** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.
 # Python installation on Windows.  
 ## Python version considerations: 
 * Python versions before 3.6 wouldn't work as the language features used in the TinGen code were not introduced yet.
@@ -30,14 +30,16 @@ Get the recent TinGen version from https://github.com/eXhumer/TinGen
 2. Unpack the `TinGen-main` folder from the ZIP you got to some location on your PC (Desktop is fine. Root of any drive is fine. Any other place is fine).
 3. Open the `TinGen-main` folder you just unzipped, Shift+Right Click on the empty space inside, select "Open Command Prompt here" or "Open PowerShell window here".
 4. In the command prompt you've got enter `<full path to python.exe> -m venv venv`(if you've followed the `Python installation` part above - `c:\python390\python.exe -m venv venv`. If you've added python installation to PATH in the installer - just `python` should suffice), press Enter, wait for it to complete.
-5. Type `venv\scripts\python.exe -m pip install -r requirements.txt` (If you get red text that contains `distutils.errors.DistutilsPlatformError: Microsoft Visual C++ 14.0 is required. Get it with "Build Tools for Visual Studio"` - you probably used python 3.9 and probably should switch to 3.8 to avoid the need to download and install multiple-gigabytes-big stuff. See the possible solutions below.).
-6. Go to https://developers.google.com/drive/api/v3/quickstart/python (link is available in TinGen's README.md), make sure you have the correct account selected in the top right, press "Enable Drive API" - "Next" - "Create" (no need to change anything on this screen, "Desktop app" that's selected by default works) - "Download client configuration" (and save the `credentials.json` it will give you) - "Done"
+5. Type `venv\scripts\python.exe -m pip install -r requirements.txt --prefer-binary`
+6. Follow [this](https://ii0606226.github.io/gdrive-compendium/credentials) to get `credentials.json` file for your account.
 7. Move the `credentials.json` you've just downloaded to the `TinGen-main` folder.
 8. Run `venv\scripts\python.exe TinGen.py`. In the browser window that opens select the Google account that has the access to the drive you want to index and grant it the access by clicking "Allow" - "Allow". If you get "This app isn't verified" page - click "Advanced" and "Go to <whatever> (unsafe)". This will create the `gdrive.token` file to store the auth information so you wouldn't need to authorize in the future. **Don't forget to delete `gdrive.token` file if you change the account.**
 9. When you need to run TinGen - run `venv\scripts\python.exe TinGen.py <tingen options> <folder_id>` (`folder_id` being the part of URL after `https://drive.google.com/drive/folders/` when you open your shared folder).
 
 ## The reasoning behind the choices:
 running virtual environment (https://docs.python.org/3/tutorial/venv.html for more info) to prevent installing packages system-wide, so they don't clutter the user profile. And so the packages that are installed already don't interfere with TinGen working.
+
+`--prefer-binary` pip flag is used to install the available binary packages in case some maintainers only provide the sources for the new version. So it does work without compiling dependencies. More frequently than without the flag, that is.
 
 ## Possible alternative:
 * Not running virtual evironment. TinGen requirements would be installed system-wide. They would be stored in the user profile. There is a possibility of conflict with already-installed (or installed in the future) pip packages.  
