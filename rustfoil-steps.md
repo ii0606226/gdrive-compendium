@@ -1,5 +1,5 @@
 # rustfoil in (almost) step-by-step way
-Latest edit at **2020/12/08** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
+Latest edit at **2021/04/18** (yyyy/mm/dd). May be outdated. Don't forget to use your brain.  
 Typing conventions:  
 `text` for buttons you need to press, commands you need to enter in command line, etc.  
 \<text\> for the stuff you need to replace by  
@@ -8,12 +8,7 @@ Typing conventions:
 
 ## Initial setup
 1. Get rustfoil (matching your OS/architecture) from https://github.com/DevYukine/rustfoil/releases/latest
-2. Get `credentials.json` for your Google account following the instructions from https://github.com/DevYukine/rustfoil/blob/master/README.md#requirements:
-    * open https://developers.google.com/drive/api/v3/quickstart/python
-    * click `Enable Drive API` button in Step 1
-    * change the project name if you want (default would work) and click `Next`
-    * leave "Desktop app" selected and press `Create`
-    * click `Download client configuration` and save the file you get there
+2. Get `credentials.json` for your Google account following the separate instructions [here](https://ii0606226.github.io/gdrive-compendium/credentials) (thanks, Google, for making the process harder, *sigh*)
 3. Create a new directory on your hard drive (i.e. "c:\rustfoil"). Place the rustfoil executable there (unpack it from `.zip` if needed). Place the `credentials.json` there as well.
 4. Open command prompt (i.e. on Windows press {Win+R}, enter `cmd`, press {Enter}) and go to that directory. `cd <path>` is the usual command for that (i.e. `cd c:\rustfoil`. On Windows you may need to change the active drive first by entering it, i.e. `d:{Enter}cd d:\rustfoil`).
 5. Let rustfoil authenticate against Google. To do that on local machine:
