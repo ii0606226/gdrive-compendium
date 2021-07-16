@@ -1,60 +1,72 @@
 <html>
-    <head>
-        <title>Mechanical Crismos emulator</title>
-        <script>
-            var hash = "";
-            function loadStuff() {
-              var xhttp = new XMLHttpRequest();
-              xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                  var res = JSON.parse(this.responseText);
-                  hash = res["body"].split("`")[1];
-                  document.getElementById('fw').textContent=res["name"].split("/")[1];
-                  document.getElementById('patches').href=res["assets"][0]["browser_download_url"];
-                  document.getElementById('patches').textContent=res["assets"][0]["browser_download_url"];
-                }
-              };
-              xhttp.open("GET", "https://api.github.com/repos/exhumer/patches/releases/latest", true);
-              xhttp.send();
 
-              xhttp = new XMLHttpRequest();
-              xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                  var res = JSON.parse(this.responseText);
-                  var release = res.find(checkHash, hash);
-                  var ams = release["assets"][0]["browser_download_url"];
-                  var fusee = release["assets"][2]["browser_download_url"];
-                  document.getElementById('ams').href=ams;
-                  document.getElementById('ams').textContent=ams;
-                  document.getElementById('fusee').href=fusee;
-                  document.getElementById('fusee').textContent=fusee;
-                }
-              };
-              xhttp.open("GET", "https://api.github.com/repos/Atmosphere-NX/atmosphere/releases", true);
-              xhttp.send();
-            }
-            function checkHash(release) {
-                if (release["assets"].find(asset => asset["browser_download_url"].includes(hash))) {
-                    return true;
-                }
-                return false;
-            }
+<head>
+  <title>Mechanical Crismos emulator</title>
+  <script>
+    var hash = "";
+    function loadStuff() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var res = JSON.parse(this.responseText);
+          hash = res["body"].split("\"")[1];
+          document.getElementById('fw').textContent = res["name"].split(" ")[3];
+          var fusee_asset = res["assets"].find(
+            asset => asset["browser_download_url"].includes("fusee.zip")
+          );
+          document.getElementById('patches').href = fusee_asset["browser_download_url"];
+          document.getElementById('patches').textContent = fusee_asset["browser_download_url"];
+        }
+      };
+      xhttp.open("GET", "https://api.github.com/repos/ITotalJustice/patches/releases/latest", true);
+      xhttp.send();
+
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var res = JSON.parse(this.responseText);
+          var release = res.find(checkHash, hash);
+          var ams = release["assets"][0]["browser_download_url"];
+          var fusee = release["assets"].find(
+            asset => asset["browser_download_url"].includes("fusee-primary.bin")
+          )["browser_download_url"];
+          document.getElementById('ams').href = ams;
+          document.getElementById('ams').textContent = ams;
+          document.getElementById('fusee').href = fusee;
+          document.getElementById('fusee').textContent = fusee;
+        }
+      };
+      xhttp.open("GET", "https://api.github.com/repos/Atmosphere-NX/atmosphere/releases", true);
+      xhttp.send();
+    }
+    function checkHash(release) {
+      if (release["assets"].find(asset => asset["browser_download_url"].includes(hash))) {
+        return true;
+      }
+      return false;
+    }
             // function checkAsset(asset, hash) {
             //     return asset["browser_download_url"].includes(hash);
             // }
-            </script>
-    </head>
-    <body onload="loadStuff()">
-        <p>Supported Firmware version: up to <b id="fw">shit's broken, wait for fix</b></p>
-        <p>Download 2 archives, unpack to the root of your SD:</p>
-        <a id="ams">shit's broken, wait for fix</a><br>
-        <a id="patches">shit's broken, wait for fix</a><br>
-        <p>Download fresh payload, inject after unpacking archives:</p>
-        <a id="fusee">shit's broken, wait for fix</a><br>
-        <p>If you have any problems booting, try:<br>
-            a) remove your cartridge from the slot, boot again<br>
-            b) rename/delete "atmosphere" and "sept" folders before unpacking newly downloaded archives again
-        </p>
-        <!-- <button onclick="loadStuff()">aaaa</button> -->
-    </body>
+  </script>
+</head>
+
+<body onload="loadStuff()">
+  <p>Supported Firmware version: up to <b id="fw">shit's broken, wait for fix</b></p>
+  <p>Download 2 archives, unpack to the root of your SD:</p>
+  <ul>
+    <li>Atmosphere CFW: <a id="ams">shit's broken, wait for fix</a></li>
+    <li>Sigpatches set: <a id="patches">shit's broken, wait for fix</a></li>
+  </ul>
+  <p>Download fresh payload, inject after unpacking archives:</p>
+  <ul>
+    <li>Fusee-primary payload: <a id="fusee">shit's broken, wait for fix</a></li>
+  </ul>
+  <p>If you have any problems booting, try:<br>
+    a) remove your cartridge from the slot, boot again<br>
+    b) rename/delete "atmosphere" and "sept" folders before unpacking newly downloaded archives again
+  </p>
+  <!-- <button onclick="loadStuff()">aaaa</button> -->
+</body>
+
 </html>
