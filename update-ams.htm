@@ -28,7 +28,7 @@
           var release = res.find(checkHash, hash);
           var ams = release["assets"][0]["browser_download_url"];
           var fusee = release["assets"].find(
-            asset => asset["browser_download_url"].includes("fusee-primary.bin")
+            asset => asset["browser_download_url"].includes("fusee.bin")
           )["browser_download_url"];
           document.getElementById('ams').href = ams;
           document.getElementById('ams').textContent = ams;
